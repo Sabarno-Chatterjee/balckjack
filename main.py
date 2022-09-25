@@ -11,9 +11,9 @@ def calculations(player_total, dealer_total):
         return "Computer wins!"
     elif player_total == dealer_total:
         return "It's a draw."
-    elif player_total > 21 and dealer_total < 21:
+    elif player_total > 21 and dealer_total <= 21:
         return "That's a bust, computer wins!"
-    elif dealer_total > 21 and player_total < 21:
+    elif dealer_total > 21 and player_total <= 21:
         return "The comp busted, you win!"
     elif dealer_total < 21 and player_total < 21:
         if dealer_total > player_total:
@@ -57,6 +57,7 @@ while new_game:
                 print(f"Your cards: {player}, current score: {player_total}")
                 print(f"Computer's first card: {dealer[0]}")
                 print()
+
             else:
                 is_continue = False
 
