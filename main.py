@@ -1,7 +1,8 @@
 import random
 import art
+import calculations
 
-
+'''
 def calculations(player_total, dealer_total):
     if player_total > 21 and dealer_total > 21:
         return "That's a double bust, regame time!"
@@ -20,6 +21,7 @@ def calculations(player_total, dealer_total):
             return "The comp wins."
         else:
             return "You win!"
+'''
 
 # if (input("Do you want to play a game of blackjack. Type 'y' or 'n'.\n").lower()) == "y":
 new_game = True
@@ -65,7 +67,7 @@ while new_game:
         print(f"Your final hand: {player}, final score: {player_total}")
         print(f"Computer's final hand: {dealer}, final score: {dealer_total}")
 
-        result = calculations(player_total, dealer_total)
+        result = calculations.calc(player_total, dealer_total)
         print(result)
     else:
         new_game = False
