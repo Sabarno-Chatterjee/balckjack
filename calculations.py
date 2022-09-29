@@ -1,4 +1,4 @@
-def calculations(player_total, dealer_total):
+def calc(player_total, dealer_total):
     if player_total > 21 and dealer_total > 21:
         return "That's a double bust, regame time!"
     elif player_total == 21 and dealer_total < 21:
