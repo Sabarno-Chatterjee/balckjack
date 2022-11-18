@@ -1,8 +1,40 @@
 import random
+
+
+
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+computer = []
+player = []
+computer_total = 0
+player_total = 0
+
+for num_of_cards in range(2):
+  computer.append(random.choice(cards))
+  player.append(random.choice(cards))
+  computer_total += computer[num_of_cards]
+  player_total += player[num_of_cards]
+
+print(computer)
+print(computer_total)
+print(player)
+print(player_total)
+if player_total == 21 and computer_total != 21:
+  print("Player wins")
+elif computer_total == 21 and player_total != 21:
+  print("Computer wins")
+
+
+
+
+
+
+
+'''
+import random
 import art
 import calculations
 
-'''
+
 def calculations(player_total, dealer_total):
     if player_total > 21 and dealer_total > 21:
         return "That's a double bust, regame time!"
@@ -21,7 +53,7 @@ def calculations(player_total, dealer_total):
             return "The comp wins."
         else:
             return "You win!"
-'''
+
 
 # if (input("Do you want to play a game of blackjack. Type 'y' or 'n'.\n").lower()) == "y":
 new_game = True
@@ -73,3 +105,4 @@ while new_game:
         new_game = False
 
 print("Goodbye bitch! See you in hell.")
+'''
