@@ -1,28 +1,39 @@
 import random
 
-
-
+#Function's like a dealer alloting random cards when required.
+def dealer():
+  cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+  return random.choice(cards)
+  
+'''
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 computer = []
 player = []
 computer_total = 0
 player_total = 0
+blackjack = ["11","10"]
 
 for num_of_cards in range(2):
-  computer.append(random.choice(cards))
-  player.append(random.choice(cards))
+  computer.append()
+  player.append()
   computer_total += computer[num_of_cards]
   player_total += player[num_of_cards]
 
-print(computer)
-print(computer_total)
-print(player)
-print(player_total)
+
 if player_total == 21 and computer_total != 21:
   print("Player wins")
 elif computer_total == 21 and player_total != 21:
   print("Computer wins")
 
+'''
+computer = []
+player = []
+for num_of_cards in range(2):
+  computer.append(dealer())
+  player.append(dealer())
+
+print(computer)
+print(player)
 
 
 
