@@ -1,119 +1,65 @@
-import random
 
-#Function's like a dealer alloting random cards when required.
-def dealer():
+import random
+def deal_card():
+  """Returns a random card from the deck."""
   cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-  return random.choice(cards)
+  card = random.choice(cards)
+  return card
+
+def calculate_score(cards):
+  """Calculates the total score"""
+  if sum(cards) == 21 and len(cards) == 2:
+    return 0
   
-'''
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-computer = []
-player = []
-computer_total = 0
-player_total = 0
-blackjack = ["11","10"]
-
-for num_of_cards in range(2):
-  computer.append()
-  player.append()
-  computer_total += computer[num_of_cards]
-  player_total += player[num_of_cards]
+  if 11 in cards and sum(cards) > 21:
+    cards.remove(11)
+    cards.append(1)
+  return sum(cards)
 
 
-if player_total == 21 and computer_total != 21:
-  print("Player wins")
-elif computer_total == 21 and player_total != 21:
-  print("Computer wins")
+def compare(user_score, computer_score):
+  """Takes user_score & computer_score as argument and returns the result."""
+  if user_score == computer_score:
+    return "Draw."
+  elif computer_score == 0:
+    return "You lost! Opponent has a Blackjack."
+  elif user_score == 0:
+    return "Win with a Blackjack."
+  elif user_score > 21:
+    return "You went over! You lose."
+  elif computer_score > 21:
+    return "Opponent went over. You win!"
+  elif user_score > computer_score:
+    return "You win."
+  else:
+    return "You lose."
+    
+    
+user_cards = []
+computer_cards = []
+is_game_over = False
+for _ in range(2):
+  user_cards.append(deal_card())
+  computer_cards.append(deal_card())
 
-'''
-computer = []
-player = []
-for num_of_cards in range(2):
-  computer.append(dealer())
-  player.append(dealer())
-
-print(computer)
-print(player)
-
-
-
-
-
-
-'''
-import random
-import art
-import calculations
-
-
-def calculations(player_total, dealer_total):
-    if player_total > 21 and dealer_total > 21:
-        return "That's a double bust, regame time!"
-    elif player_total == 21 and dealer_total < 21:
-        return "You win."
-    elif player_total < 21 and dealer_total == 21:
-        return "Computer wins!"
-    elif player_total == dealer_total:
-        return "It's a draw."
-    elif player_total > 21 and dealer_total <= 21:
-        return "That's a bust, computer wins!"
-    elif dealer_total > 21 and player_total <= 21:
-        return "The comp busted, you win!"
-    elif dealer_total < 21 and player_total < 21:
-        if dealer_total > player_total:
-            return "The comp wins."
-        else:
-            return "You win!"
-
-
-# if (input("Do you want to play a game of blackjack. Type 'y' or 'n'.\n").lower()) == "y":
-new_game = True
-
-while new_game:
-    if (input("Do you want to play a game of blackjack. Type 'y' or 'n'.\n").lower()) == "y":
-        print(art.logo)
-
-        cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-        player = []
-        dealer = []
-        player_total = 0
-        dealer_total = 0
-
-        is_continue = True
-
-        for card in range(0, 2):
-            player.append(random.choice(cards))
-            dealer.append(random.choice(cards))
-            player_total += player[card]
-            dealer_total += dealer[card]
-
-        print(f"Your cards: {player}, current score: {player_total}")
-        print(f"Computer's first card: {dealer[0]}")
-
-        cue = 1
-        while is_continue:
-            if (input("Type 'y' to get another card, type 'n' to pass:\n")) == "y":
-                print()
-                cue += 1
-                player.append(random.choice(cards))
-                player_total += player[cue]
-                dealer.append(random.choice(cards))
-                dealer_total += dealer[cue]
-                print(f"Your cards: {player}, current score: {player_total}")
-                print(f"Computer's first card: {dealer[0]}")
-                print()
-
-            else:
-                is_continue = False
-
-        print()
-        print(f"Your final hand: {player}, final score: {player_total}")
-        print(f"Computer's final hand: {dealer}, final score: {dealer_total}")
-
-        result = calculations.calc(player_total, dealer_total)
-        print(result)
+while not is_game_over:
+  
+  user_score = calculate_score(user_cards)
+  computer_score = calculate_score(computer_cards)
+  print(f"Your cards are: {user_cards}, Current score: {user_score}")
+  print(f"Computer's first card: {computer_cards[0]}")
+  
+  if user_score == 0 or computer_score == 0 or user_score > 21:
+    is_game_over = True
+  else:
+    new_card = input("Type 'y' for new card or 'n' to pass.\n").lower()
+    if new_card == "y":
+      user_cards.append(deal_card())
     else:
-        new_game = False
+      is_game_over = True
 
-print("Goodbye bitch! See you in hell.")
-'''
+while computer_score != 0 and computer_score < 17:
+  computer_cards.append(deal_card())
+  computer_score = calculate_score(computer_cards)
+
+print(compare(user_score, computer_score))
