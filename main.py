@@ -62,4 +62,7 @@ while computer_score != 0 and computer_score < 17:
   computer_cards.append(deal_card())
   computer_score = calculate_score(computer_cards)
 
+
+print(f"Your final hand was: {user_cards} and final score: {user_score}.")
+print(f"Computer's final hand was : {computer_cards} and final_score: {computer_score}.")
 print(compare(user_score, computer_score))
